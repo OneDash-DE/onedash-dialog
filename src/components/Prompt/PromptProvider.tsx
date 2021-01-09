@@ -16,7 +16,7 @@ const PromptProvider = ({ children }: any): JSX.Element => {
 
 	const [state, update] = useState(initialPromptState);
 
-	const yesNoPromt = useCallback((title: string, text: string) => {
+	const yesNoPrompt = useCallback((title: string, text: string) => {
 		return new Promise<boolean>((resolve) => {
 			update({
 				isOpen: true,
@@ -42,7 +42,7 @@ const PromptProvider = ({ children }: any): JSX.Element => {
 	return (
 		<PromptContext.Provider
 			value={{
-				yesNoPromt,
+				yesNoPrompt,
 			}}
 		>
 			{children}

@@ -5,7 +5,7 @@ export interface PromptState {}
 export const initialPromptState: PromptState = {};
 
 export interface PromptContextInterface extends PromptState {
-	yesNoPromt: (title: string, text: string) => Promise<boolean>;
+	yesNoPrompt: (title: string, text: string) => Promise<boolean>;
 }
 
 /**
@@ -20,7 +20,7 @@ const stub = (): never => {
  */
 const initialContext = {
 	...initialPromptState,
-	yesNoPromt: stub,
+	yesNoPrompt: stub,
 };
 
 /**

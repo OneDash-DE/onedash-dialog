@@ -40,10 +40,10 @@ A prompt dialog shows a yes or no button. The user has to decide which option he
 
 ```javascript
 const PromptDialog = () => {
-	const { yesNoPromt } = usePrompt();
+	const { yesNoPrompt } = usePrompt();
 
 	const onClick = () => {
-		yesNoPromt("Are you really sure?", "Here comes the text with additional information.").then((yes) => {
+		yesNoPrompt("Are you really sure?", "Here comes the text with additional information.").then((yes) => {
 			if (yes) {
 				console.log("Yes has been pressed");
 			} else {

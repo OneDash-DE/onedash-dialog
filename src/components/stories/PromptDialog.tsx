@@ -3,10 +3,10 @@ import React from "react";
 import { usePrompt } from "../Prompt/PromptContext";
 
 const PromptDialog = () => {
-	const { yesNoPromt } = usePrompt();
+	const { yesNoPrompt } = usePrompt();
 
 	const onClick = () => {
-		yesNoPromt("Are you really sure?", "Here comes the text with additional information.").then((yes) => {
+		yesNoPrompt("Are you really sure?", "Here comes the text with additional information.").then((yes) => {
 			if (yes) {
 				console.log("Yes has been pressed");
 			} else {
