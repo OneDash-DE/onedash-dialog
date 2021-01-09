@@ -5,7 +5,7 @@ export interface PromptState {}
 export const initialPromptState: PromptState = {};
 
 export interface PromptContextInterface extends PromptState {
-	yesNoPrompt: (title: string, text: string) => Promise<boolean>;
+	yesNoPrompt: (title: React.ReactChild, text: React.ReactChild) => Promise<boolean>;
 }
 
 /**

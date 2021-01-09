@@ -6,8 +6,8 @@ import PromptContext from "./PromptContext";
 
 const initialPromptState = {
 	isOpen: false,
-	title: "",
-	text: "",
+	title: "" as React.ReactChild,
+	text: "" as React.ReactChild,
 	resolve: undefined as undefined | ((b: boolean) => void),
 };
 
@@ -16,7 +16,7 @@ const PromptProvider = ({ children }: any): JSX.Element => {
 
 	const [state, update] = useState(initialPromptState);
 
-	const yesNoPrompt = useCallback((title: string, text: string) => {
+	const yesNoPrompt = useCallback((title: React.ReactChild, text: React.ReactChild) => {
 		return new Promise<boolean>((resolve) => {
 			update({
 				isOpen: true,

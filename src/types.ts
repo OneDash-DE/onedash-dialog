@@ -86,7 +86,7 @@ export interface DialogProps {
 	/**
 	 * Title of dialog which is not in dialog content
 	 */
-	title?: string;
+	title?: React.ReactChild;
 }
 
 export enum LocalCodes {
