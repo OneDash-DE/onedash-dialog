@@ -78,7 +78,7 @@
 		"registry": "https://registry.npmjs.org/"
 	},
 	"dependencies": {
-		"node-sass": "^4.14.1",
+		"node-sass": "^5.0.0",
 		"body-scroll-lock": "^3.1.5"
 	}
 }
