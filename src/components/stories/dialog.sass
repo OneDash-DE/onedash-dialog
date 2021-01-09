@@ -1,0 +1,149 @@
+html
+	--blue: #162055
+	--lightBlue: #009eff1d
+	--invalid: #d13131
+	--dialog: white
+	--background: rgba(0,0,0,0.6)
+	--very-light-gray: #edf1f6
+	--light-gray: #dadee4
+	--middle-gray: #81848a
+
+.onedash-dialog-v2
+	display: none
+	font-size: 14px
+
+	.dialog-wrapper
+		position: fixed
+		z-index: 100000
+		width: 100vw
+		height: 100vh
+		left: 0
+		top: 0
+		display: flex
+		justify-content: center
+		align-items: center
+
+		.dialog
+			background: var(--dialog)
+			border-radius: 6px
+			padding: 20px
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+			position: relative
+			width: calc(100% - 100px)
+			max-width: 600px
+			animation: scaleIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+		.dialog-title
+			color: #ee6732
+			font-size: 1.5rem
+			padding-bottom: 5px
+		.close-btn
+			background: none
+			border: none
+			position: absolute
+			right: 25px
+			top: 15px
+			font-size: 1.8rem
+			transform: rotate(45deg)
+			transition: 0.15s all ease-in-out
+			cursor: pointer
+			&:focus
+				outline: none
+			&:hover
+				opacity: 0.7
+				transform: rotate(0deg)
+
+		.content
+			max-height: calc((var(--wh) * 100) - 150px)
+			overflow-y: auto
+			padding-right: 10px
+
+			&::-webkit-scrollbar
+				width: 4px
+				height: 2px
+
+			&::-webkit-scrollbar-button
+				width: 0px
+				height: 0px
+
+			&::-webkit-scrollbar-thumb
+				background: #e7e7e7
+				border: 0px none #ffffff
+				border-radius: 50px
+
+			&::-webkit-scrollbar-track
+				background: none
+				border: 0px none #ffffff
+				border-radius: 50px
+
+			&::-webkit-scrollbar-corner
+				background: transparent
+
+	.dialog-bg
+		animation: fadeBGIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+		position: fixed
+		width: 100vw
+		height: 100vh
+		left: 0
+		top: 0
+		z-index: 50000
+
+	&.visible
+		display: block
+
+	&.is-closing
+		display: block
+		.dialog
+			animation: scaleOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+		.dialog-bg
+			animation: fadeBGOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+
+	h1
+		font-size: 1.3em
+		margin: 0px 0px 10px 0px
+		line-height: 1.1em
+	h2
+		font-size: 1.1em
+		margin: 10px 0px
+		line-height: 1em
+
+	@keyframes scaleOut
+		0%
+			transform: scale(1)
+			opacity: 1
+
+		100%
+			transform: scale(0)
+			opacity: 0.1
+
+	@keyframes scaleIn
+		0%
+			transform: scale(0)
+			opacity: 0.1
+
+		100%
+			transform: scale(1)
+			opacity: 1
+
+	@keyframes fadeBGIn
+		0%
+			background: transparent
+			backdrop-filter: blur(0px)
+			-webkit-backdrop-filter: blur(0px)
+
+		100%
+			background: var(--background)
+			backdrop-filter: blur(4px)
+			-webkit-backdrop-filter: blur(4px)
+
+	@keyframes fadeBGOut
+		0%
+			background: var(--background)
+			backdrop-filter: blur(4px)
+			-webkit-backdrop-filter: blur(4px)
+
+		100%
+			background: transparent
+			backdrop-filter: blur(0px)
+			-webkit-backdrop-filter: blur(0px)

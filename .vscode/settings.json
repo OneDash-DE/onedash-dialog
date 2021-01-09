@@ -1,0 +1,24 @@
+{
+  "files.exclude": {
+    "onedash-react-table.code-workspace": true,
+    "package-lock.json": true,
+    "node_modules": true,
+    "dist": true,
+    "example\\package-lock.json": true,
+    ".editorconfig": true,
+    ".eslintignore": true,
+    ".eslintrc": true,
+    ".gitignore": true,
+    ".prettierrc": true,
+    ".releaserc": true,
+    "tsconfig.json": true,
+    ".babelrc": true,
+    "renovate.json": true,
+    "example/node_modules": true,
+    "example/package-lock.json": true,
+    ".dependabot": true,
+    ".github": true,
+    ".storybook": true,
+    ".vscode": true
+  }
+}

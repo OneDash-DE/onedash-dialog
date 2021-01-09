@@ -1,0 +1,76 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import BasicDialog from "./BasicDialog";
+import Dialog from "../Dialog";
+import PromptProvider from "../Prompt/PromptProvider";
+import PromptDialog from "./PromptDialog";
+
+import "./style.sass";
+import "./dialog.sass";
+
+<Meta title="Components/Dialog" component={Dialog} />
+
+# Dialog
+
+## Basic
+
+```javascript
+<Dialog isOpen={isOpen} onClose={/*METHOD which updates isOpen*/}>
+	<ExampleContent />
+</Dialog>
+```
+
+<Canvas>
+	<Story
+		name="Basic"
+		args={{
+			isOpen: false,
+			closeBtn: "+",
+			title: "Dialog headding",
+		}}
+	>
+		{(args) => <BasicDialog {...args} />}
+	</Story>
+</Canvas>
+
+# Prompt Dialog
+
+## Basic
+
+A prompt dialog shows a yes or no button. The user has to decide which option he prefers.
+
+```javascript
+const PromptDialog = () => {
+	const { yesNoPromt } = usePrompt();
+
+	const onClick = () => {
+		yesNoPromt("Are you really sure?", "Here comes the text with additional information.").then((yes) => {
+			if (yes) {
+				console.log("Yes has been pressed");
+			} else {
+				console.log("No has been pressed");
+			}
+		});
+	};
+	return (
+		<div className="prompt-dialog">
+			<button onClick={onClick}>Open Prompt</button>
+		</div>
+	);
+};
+```
+
+Important: You have to wrap the components with "PromptProvider";
+
+```javascript
+<PromptProvider>
+	<App />
+</PromptProvider>
+```
+
+<Canvas>
+	<Story name="Prompt Dialog">
+		<PromptProvider>
+			<PromptDialog />
+		</PromptProvider>
+	</Story>
+</Canvas>

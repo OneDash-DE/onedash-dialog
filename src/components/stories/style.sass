@@ -1,0 +1,66 @@
+
+html,body
+
+	font-family: 'Montserrat', sans-serif
+	background: #f7f8fc
+	font-size: 16px
+	padding: 0px !important
+	margin: 0px !important
+	&.disable-scrolling
+		// Add padding to right in case scroll bar is removed => Content shouldn't jump around
+		padding-right: 17px !important
+
+*
+	box-sizing: border-box
+
+.card
+	padding: 20px
+	background: #162136
+	border-radius: 4px
+	box-shadow: 0px 0px 3px rgba(0,0,0,0.15)
+	max-width: 900px
+	color: white
+	margin: 30px
+
+h1
+	font-size: 2rem
+	margin: 20px 0px 10px 0px
+
+h2
+	font-size: 1.5rem
+h3
+	font-size: 1.3rem
+h4
+	font-size: 1.2rem
+
+p
+	line-height: 1.3rem
+	font-size: 1rem
+
+.buttons
+	display: flex
+	justify-content: grid
+	grid-gap: 0px 10px
+	justify-content: flex-end
+
+button
+	padding: 6px 20px
+	border: none
+	border-radius: 5px
+	font-size: 1em
+	font-weight: bold
+	cursor: pointer
+	transition: 0.15s all ease-in-out
+	&.submit, &.yes
+		background: #5f53ff
+		color: white
+		&:hover
+			background: #4d41cd
+	&.cancel, &.no
+		background: white
+		color: black
+		border: 2px solid #dbdbdb
+		&:hover
+			background: #dbdbdb
+	&:focus
+		outline: none
