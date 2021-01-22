@@ -87,6 +87,8 @@ export interface DialogProps {
 	 * Title of dialog which is not in dialog content
 	 */
 	title?: React.ReactChild;
+
+	disableScrollLocking?: boolean;
 }
 
 export enum LocalCodes {

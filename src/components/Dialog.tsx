@@ -31,6 +31,7 @@ const Dialog = ({
 	title,
 	disableWrapperClick,
 	disableEsc,
+	disableScrollLocking,
 }: DialogProps) => {
 	const [state, update] = React.useState(initialDialogState);
 
@@ -44,15 +45,17 @@ const Dialog = ({
 	}, [onClose]);
 
 	const disableScrolling = useCallback(() => {
+		if (disableScrollLocking) return;
 		const el = scrollingLockTarget ?? document.body;
 		el.classList.add("disable-scrolling");
 		disableBodyScroll(el);
-	}, [scrollingLockTarget]);
+	}, [disableScrollLocking, scrollingLockTarget]);
 	const enabelScrolling = useCallback(() => {
+		if (disableScrollLocking) return;
 		const el = scrollingLockTarget ?? document.body;
 		el.classList.remove("disable-scrolling");
 		enableBodyScroll(el);
-	}, [scrollingLockTarget]);
+	}, [disableScrollLocking, scrollingLockTarget]);
 
 	useEffect(() => {
 		if (state.isVisible === isOpen) return;
