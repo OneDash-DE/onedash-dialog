@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { DialogProps } from "../types";
+import DialogUtils from "../DialogUtils";
 
 const DEFAULT_ANIMATION_TIMEOUT = 300;
 
@@ -47,14 +47,12 @@ const Dialog = ({
 	const disableScrolling = useCallback(() => {
 		if (disableScrollLocking) return;
 		const el = scrollingLockTarget ?? document.body;
-		el.classList.add("disable-scrolling");
-		disableBodyScroll(el);
+		DialogUtils.disableScrolling(el);
 	}, [disableScrollLocking, scrollingLockTarget]);
 	const enabelScrolling = useCallback(() => {
 		if (disableScrollLocking) return;
 		const el = scrollingLockTarget ?? document.body;
-		el.classList.remove("disable-scrolling");
-		enableBodyScroll(el);
+		DialogUtils.enableScrolling(el);
 	}, [disableScrollLocking, scrollingLockTarget]);
 
 	useEffect(() => {
