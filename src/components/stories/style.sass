@@ -45,22 +45,26 @@ p
 
 button
 	padding: 6px 20px
-	border: none
 	border-radius: 5px
 	font-size: 1em
 	font-weight: bold
 	cursor: pointer
 	transition: 0.15s all ease-in-out
+	background: white
+	color: black
+	border: 2px solid #dbdbdb
+	&:hover
+		background: #dbdbdb
 	&.submit, &.yes
 		background: #5f53ff
+		border-color: #5f53ff
 		color: white
 		&:hover
 			background: #4d41cd
-	&.cancel, &.no
-		background: white
-		color: black
-		border: 2px solid #dbdbdb
-		&:hover
-			background: #dbdbdb
+		&:focus
+			border-color: black
+			outline: none
+
 	&:focus
+		border-color: black
 		outline: none

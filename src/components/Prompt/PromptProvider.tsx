@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import locales from "../../Localization";
-import { LocalCodes } from "../../types";
+import { IButton, LocalCodes } from "../../types";
 import Dialog from "../Dialog";
 import PromptContext from "./PromptContext";
 
@@ -8,26 +8,52 @@ const initialPromptState = {
 	isOpen: false,
 	title: "" as React.ReactChild,
 	text: "" as React.ReactChild,
-	resolve: undefined as undefined | ((b: boolean) => void),
+	resolve: undefined as undefined | ((b: number | string | boolean) => void),
+	buttons: [] as IButton[],
 };
 
 const PromptProvider = ({ children }: any): JSX.Element => {
-	const yesBtn = useRef<HTMLButtonElement>(null);
+	const focusBtn = useRef<HTMLButtonElement>(null);
 
 	const [state, update] = useState(initialPromptState);
 
 	const yesNoPrompt = useCallback((title: React.ReactChild, text: React.ReactChild) => {
-		return new Promise<boolean>((resolve) => {
+		return new Promise<boolean>((resolve: any) => {
 			update({
 				isOpen: true,
 				resolve,
 				text,
 				title,
+				buttons: [
+					{
+						value: true,
+						text: locales()[LocalCodes.Yes],
+						className: "yes",
+						focus: true,
+					},
+					{
+						value: false,
+						text: locales()[LocalCodes.No],
+						className: "no",
+					},
+				],
 			});
 		});
 	}, []);
 
-	const close = (answer: boolean) => {
+	const buttonsPrompt = useCallback((title: React.ReactChild, text: React.ReactChild, buttons: IButton[]) => {
+		return new Promise<number | string | boolean>((resolve) => {
+			update({
+				isOpen: true,
+				resolve,
+				text,
+				title,
+				buttons,
+			});
+		});
+	}, []);
+
+	const close = (answer: number | string | boolean) => {
 		state.resolve?.(answer);
 		update({
 			...state,
@@ -36,13 +62,14 @@ const PromptProvider = ({ children }: any): JSX.Element => {
 	};
 
 	const focusYes = useCallback(() => {
-		yesBtn.current?.focus();
-	}, [yesBtn]);
+		focusBtn.current?.focus();
+	}, [focusBtn]);
 
 	return (
 		<PromptContext.Provider
 			value={{
 				yesNoPrompt,
+				buttonsPrompt,
 			}}
 		>
 			{children}
@@ -55,13 +82,17 @@ const PromptProvider = ({ children }: any): JSX.Element => {
 				disableWrapperClick
 			>
 				<p>{state.text}</p>
-				<div className="buttons">
-					<button className="no" onClick={() => close(false)}>
-						{locales()[LocalCodes.No]}
-					</button>
-					<button ref={yesBtn} className="yes" onClick={() => close(true)}>
-						{locales()[LocalCodes.Yes]}
-					</button>
+				<div className="buttons" role="tablist" aria-label={locales()[LocalCodes.AnswerList]}>
+					{state.buttons.map((b) => (
+						<button
+							key={String(b.value)}
+							ref={b.focus === true ? focusBtn : undefined}
+							className={b.className ?? ""}
+							onClick={() => close(b.value)}
+						>
+							{b.text}
+						</button>
+					))}
 				</div>
 			</Dialog>
 		</PromptContext.Provider>

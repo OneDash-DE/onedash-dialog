@@ -3,9 +3,9 @@ import React from "react";
 import { usePrompt } from "../Prompt/PromptContext";
 
 const PromptDialog = () => {
-	const { yesNoPrompt } = usePrompt();
+	const { yesNoPrompt, buttonsPrompt } = usePrompt();
 
-	const onClick = () => {
+	const onYesNoPromptClick = () => {
 		yesNoPrompt("Are you really sure?", "Here comes the text with additional information.").then((yes) => {
 			if (yes) {
 				console.log("Yes has been pressed");
@@ -14,9 +14,19 @@ const PromptDialog = () => {
 			}
 		});
 	};
+
+	const onButtonsPromptClick = () => {
+		buttonsPrompt("Which cake do you like?", "Choose you favorite cake!", [
+			{ text: "Cheese Cake", value: "cheese-cake", focus: true },
+			{ text: "Honey Cake", value: "honey-cake" },
+		]).then((btnValue) => {
+			console.log(`${btnValue} has been choosen.`);
+		});
+	};
 	return (
 		<div className="prompt-dialog">
-			<button onClick={onClick}>Open Prompt</button>
+			<button onClick={onYesNoPromptClick}>Yes - No Prompt</button>
+			<button onClick={onButtonsPromptClick}>Buttons Prompt</button>
 		</div>
 	);
 };

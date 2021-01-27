@@ -94,5 +94,12 @@ export interface DialogProps {
 export enum LocalCodes {
 	Yes,
 	No,
+	AnswerList,
 }
 export type LocalizationTexts = { [key in LocalCodes]: string };
+export interface IButton {
+	value: number | string | boolean;
+	text: React.ReactChild;
+	className?: string;
+	focus?: boolean;
+}
