@@ -95,12 +95,10 @@ const Dialog = ({
 			}
 		} else {
 			document.removeEventListener("keydown", onKeydown);
-			DialogUtils.unregisterHeightHelper();
 		}
 		// cleanup function
 		return () => {
 			document.removeEventListener("keydown", onKeydown);
-			DialogUtils.unregisterHeightHelper();
 		};
 	}, [onKeydown, disableHeightHelper, state.isVisible]);
 
