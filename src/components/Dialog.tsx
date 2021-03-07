@@ -34,6 +34,7 @@ const Dialog = ({
 	disableScrollLocking,
 }: DialogProps) => {
 	const [state, update] = React.useState(initialDialogState);
+	const contentRef = React.useRef<HTMLDivElement>(null);
 
 	const close = useCallback(() => {
 		if (onClose) {
@@ -46,12 +47,12 @@ const Dialog = ({
 
 	const disableScrolling = useCallback(() => {
 		if (disableScrollLocking) return;
-		const el = scrollingLockTarget ?? document.body;
+		const el = scrollingLockTarget ?? contentRef.current;
 		DialogUtils.disableScrolling(el);
 	}, [disableScrollLocking, scrollingLockTarget]);
 	const enabelScrolling = useCallback(() => {
 		if (disableScrollLocking) return;
-		const el = scrollingLockTarget ?? document.body;
+		const el = scrollingLockTarget ?? contentRef.current;
 		DialogUtils.enableScrolling(el);
 	}, [disableScrollLocking, scrollingLockTarget]);
 
@@ -93,7 +94,9 @@ const Dialog = ({
 		// Register Keyhandler
 		if (state.isVisible) {
 			document.addEventListener("keydown", onKeydown);
-			if (!disableHeightHelper) window.addEventListener("resize", onResize);
+			if (!disableHeightHelper && document.documentElement.style.getPropertyValue("--wh") === "") {
+				window.addEventListener("resize", onResize);
+			}
 			onResize();
 		} else {
 			document.removeEventListener("keydown", onKeydown);
@@ -139,7 +142,9 @@ const Dialog = ({
 							{closeBtn}
 						</button>
 					)}
-					<div className="content">{children}</div>
+					<div className="content" ref={contentRef}>
+						{children}
+					</div>
 				</div>
 			</div>
 			<div style={style?.overlay} className="dialog-bg" />
