@@ -7,12 +7,14 @@ const onResize = () => {
 const DialogUtils = {
 	enableScrolling: (target?: Element | null) => {
 		if (!target) return;
-		target.classList.remove("disable-scrolling");
+		target.classList.remove("enable-scrolling");
+		document.body.classList.remove("disable-scrolling");
 		enableBodyScroll(target);
 	},
 	disableScrolling: (target?: Element | null) => {
 		if (!target) return;
-		target.classList.add("disable-scrolling");
+		target.classList.add("enable-scrolling");
+		document.body.classList.add("disable-scrolling");
 		disableBodyScroll(target);
 	},
 

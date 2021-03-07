@@ -61,17 +61,17 @@ const Dialog = ({
 
 		if (state.isVisible) {
 			// Closes
+			enabelScrolling();
 			update({ isOpening: false, isVisible: false, isClosing: true });
 			setTimeout(() => {
 				update({ isOpening: false, isVisible: false, isClosing: false });
 				onAfterClose?.();
-				enabelScrolling();
 			}, closeAnimationLength ?? DEFAULT_ANIMATION_TIMEOUT);
 		} else {
 			// Opens
-			disableScrolling();
 			update({ isClosing: false, isOpening: true, isVisible: true });
 			setTimeout(() => {
+				disableScrolling();
 				update({ isClosing: false, isOpening: false, isVisible: true });
 				onAfterOpen?.();
 			}, openAnimationLength ?? DEFAULT_ANIMATION_TIMEOUT);
