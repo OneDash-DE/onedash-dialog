@@ -1,5 +1,9 @@
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
+const onResize = () => {
+	document.documentElement.style.setProperty("--wh", `${window.innerHeight / 100}px`);
+};
+
 const DialogUtils = {
 	enableScrolling: (target?: Element | null) => {
 		if (!target) return;
@@ -13,6 +17,16 @@ const DialogUtils = {
 	},
 
 	clearAllBodyScrollLocks,
+
+	registerHeightHelper: () => {
+		if (document.documentElement.style.getPropertyValue("--wh") === "") {
+			window.addEventListener("resize", onResize);
+			onResize();
+		}
+	},
+	unregisterHeightHelper: () => {
+		window.removeEventListener("resize", onResize);
+	},
 };
 
 export default DialogUtils;

@@ -87,25 +87,20 @@ const Dialog = ({
 	);
 
 	useEffect(() => {
-		const onResize = () => {
-			document.documentElement.style.setProperty("--wh", `${window.innerHeight / 100}px`);
-		};
-
 		// Register Keyhandler
 		if (state.isVisible) {
 			document.addEventListener("keydown", onKeydown);
-			if (!disableHeightHelper && document.documentElement.style.getPropertyValue("--wh") === "") {
-				window.addEventListener("resize", onResize);
+			if (!disableHeightHelper) {
+				DialogUtils.registerHeightHelper();
 			}
-			onResize();
 		} else {
 			document.removeEventListener("keydown", onKeydown);
-			window.removeEventListener("resize", onResize);
+			DialogUtils.unregisterHeightHelper();
 		}
 		// cleanup function
 		return () => {
 			document.removeEventListener("keydown", onKeydown);
-			window.removeEventListener("resize", onResize);
+			DialogUtils.unregisterHeightHelper();
 		};
 	}, [onKeydown, disableHeightHelper, state.isVisible]);
 
