@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
-import { DialogProps } from "../../types";
-import Dialog from "../Dialog";
+import { PopoverProps } from "../../types";
+import Popover from "../Popover";
 import ExampleContent from "./ExampleContent";
 
-const BasicDialog = (props: DialogProps) => {
+const BasicPopover = (props: PopoverProps) => {
 	const [isOpen, update] = React.useState(props.isOpen);
 	React.useEffect(() => {
 		update(props.isOpen);
@@ -14,15 +14,11 @@ const BasicDialog = (props: DialogProps) => {
 			<div className="card">
 				<ExampleContent onClick={() => update(true)} />
 			</div>
-			<Dialog {...props} isOpen={isOpen} onClose={() => update(false)}>
+			<Popover {...props} isOpen={isOpen} onClose={() => update(false)}>
 				<ExampleContent />
-				<div className="buttons">
-					<button className="cancel">Cancel</button>
-					<button className="submit">Submit</button>
-				</div>
-			</Dialog>
+			</Popover>
 		</div>
 	);
 };
 
-export default BasicDialog;
+export default BasicPopover;

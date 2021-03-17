@@ -7,8 +7,9 @@ html,body
 	padding: 0px !important
 	margin: 0px !important
 	&.disable-scrolling
-		// Add padding to right in case scroll bar is removed => Content shouldn't jump around
-		padding-right: 17px !important
+		@media screen and ( min-width: 480px)
+			// Add padding to right in case scroll bar is removed => Content shouldn't jump around
+			padding-right: 17px !important
 
 *
 	box-sizing: border-box

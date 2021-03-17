@@ -1,0 +1,31 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import BasicPopover from "./BasicPopover";
+import Popover from "../Popover";
+
+import "./style.sass";
+import "./dialog.sass";
+
+<Meta title="Components/Popover" component={Popover} />
+
+# Popover
+
+## Basic
+
+```javascript
+<Popover isOpen={isOpen} onClose={/*METHOD which updates isOpen*/}>
+	<ExampleContent />
+</Popover>
+```
+
+<Canvas>
+	<Story
+		name="Basic"
+		args={{
+			isOpen: true,
+			closeBtn: "+",
+			title: "Popover headding",
+		}}
+	>
+		{(args) => <BasicPopover {...args} />}
+	</Story>
+</Canvas>
