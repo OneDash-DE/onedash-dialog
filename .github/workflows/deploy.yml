@@ -1,9 +1,8 @@
-name: Deploy Server
+name: Release new version
 on:
-    push:
-        branches:
-            - main
-        tags-ignore:
+    schedule:
+        - cron: "0 0 * * 6"
+    workflow_dispatch:
 
 jobs:
     create-release:
