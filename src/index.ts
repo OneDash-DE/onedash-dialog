@@ -1,4 +1,5 @@
 import Dialog from "./components/Dialog";
+import Popover from "./components/Popover";
 import { DE, EN } from "./locales";
 import * as types from "./types";
 import { setLocaleMessages } from "./Localization";
@@ -11,4 +12,4 @@ const DialogLocales = {
 	EN,
 };
 
-export { Dialog, DialogLocales, PromptProvider, DialogUtils, usePrompt, setLocaleMessages, types };
+export { Dialog, DialogLocales, PromptProvider, DialogUtils, usePrompt, setLocaleMessages, types, Popover };
