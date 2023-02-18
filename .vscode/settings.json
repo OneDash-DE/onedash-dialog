@@ -16,8 +16,7 @@
 		"renovate.json": true,
 		"example/node_modules": true,
 		"example/package-lock.json": true,
-		".dependabot": true,
-		".github": true
+		".dependabot": true
 	}
 }
 

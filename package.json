@@ -12,7 +12,7 @@
 		"node": ">=10"
 	},
 	"scripts": {
-		"build": "microbundle --no-sourcemap --css-modules false --jsx React.createElement --format modern",
+		"build": "microbundle --no-sourcemap --css-modules false --jsx React.createElement --jsxFragment React.Fragment --format modern",
 		"start": "npm run storybook",
 		"lint": "tsc --noEmit && npx eslint src/** --quiet --fix",
 		"format": "npx prettier --write src/**/*.{js,ts,tsx}",
