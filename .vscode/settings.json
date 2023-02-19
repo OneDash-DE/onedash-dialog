@@ -10,7 +10,6 @@
 		".eslintrc": true,
 		".gitignore": true,
 		".prettierrc": true,
-		".releaserc": true,
 		"tsconfig.json": true,
 		".babelrc": true,
 		"renovate.json": true,
