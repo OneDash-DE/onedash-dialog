@@ -8,6 +8,7 @@
 	"main": "./dist/foo.umd.js",
 	"module": "./dist/foo.module.mjs",
 	"exports": "./dist/foo.modern.mjs",
+	"types": "./dist/index.d.ts",
 	"source": "src/index.ts",
 	"engines": {
 		"node": ">=10"
