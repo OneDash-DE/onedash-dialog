@@ -5,14 +5,15 @@
 	"author": "ChewbaccaCookie",
 	"license": "MIT",
 	"repository": "OneDash-DE/onedash-dialog",
-	"main": "dist/index.js",
-	"module": "dist/index.modern.js",
+	"main": "./dist/foo.umd.js",
+	"module": "./dist/foo.module.mjs",
+	"exports": "./dist/foo.modern.mjs",
 	"source": "src/index.ts",
 	"engines": {
 		"node": ">=10"
 	},
 	"scripts": {
-		"build": "microbundle --no-sourcemap --css-modules false --jsx React.createElement --jsxFragment React.Fragment --format modern",
+		"build": "microbundle --css-modules false --jsx React.createElement --jsxFragment React.Fragment --format modern,esm,cjs",
 		"start": "npm run storybook",
 		"lint": "tsc --noEmit && npx eslint src/** --quiet --fix",
 		"format": "npx prettier --write src/**/*.{js,ts,tsx}",
